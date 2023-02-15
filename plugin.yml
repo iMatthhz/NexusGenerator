@@ -1,0 +1,16 @@
+---
+name: NexusMap
+version: 0.0.1
+main: matheuss\NexusMap\Main
+api: 4.13.0
+src-namespace-prefix: matheuss\NexusMap
+
+commands:
+  generator:
+    permission: generator.use
+    permission-message: "You don't have permission to use this command."
+
+permissions:
+  generator.use:
+    default: op
+...
