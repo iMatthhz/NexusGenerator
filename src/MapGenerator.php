@@ -18,19 +18,16 @@ class MapGenerator extends Generator {
      */
     public function generateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
         $chunk = $world->getChunk($chunkX, $chunkZ);
-        $pos = 0;
         
-        for($z = 0; $z < 16; $z++) {
-            for($x = 0; $x < 16; $x++) {
+        for($z = 0; $z < 16; ++$z) {
+            for($x = 0; $x < 16; ++$x) {
                 $chunk->setFullBlock($x, 0, $z, VanillaBlocks::BEDROCK()->getFullId());
                 
-                if(in_array($pos, $this->map)) {
+                if(in_array($z * 16 + $x, $this->map)) {
                     $chunk->setFullBlock($x, 1, $z, VanillaBlocks::BEDROCK()->getFullId());
                 } else {
                     $chunk->setFullBlock($x, 1, $z, VanillaBlocks::OBSIDIAN()->getFullId());
                 }
-                
-                $pos++;
             }
         }
         
