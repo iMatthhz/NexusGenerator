@@ -23,7 +23,7 @@ class Main extends PluginBase {
     /**
      * @Param strig $name
      *
-     * return void
+     * @return void
      */
     public function generateWorld(string $name): void {
         $generator = GeneratorManager::getInstance()->getGenerator('edge');
