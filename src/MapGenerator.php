@@ -17,29 +17,23 @@ class MapGenerator extends Generator {
      * @return void
      */
     public function generateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
-        $map = $this->map;
         $chunk = $world->getChunk($chunkX, $chunkZ);
         $pos = 0;
         
-        $bed = VanillaBlocks::BEDROCK()->getFullId();
-        $obs = VanillaBlocks::OBSIDIAN()->getFullId();
-        
         for($z = 0; $z < 16; $z++) {
             for($x = 0; $x < 16; $x++) {
-                $chunk->setFullBlock($x, 0, $z, $bed);
+                $chunk->setFullBlock($x, 0, $z, VanillaBlocks::BEDROCK()->getFullId());
                 
-                if(in_array($pos, $map)) {
-                    $block = $bed;
+                if(in_array($pos, $this->map)) {
+                    $chunk->setFullBlock($x, 1, $z, VanillaBlocks::BEDROCK()->getFullId());
                 } else {
-                    $block = $obs;
+                    $chunk->setFullBlock($x, 1, $z, VanillaBlocks::OBSIDIAN()->getFullId());
                 }
                 
-                $chunk->setFullBlock($x, 1, $z, $block);
                 $pos++;
             }
         }
         
-        $chunk->setTerrainDirtyFlag(Chunk::DIRTY_FLAG_BLOCKS, true);
         $world->setChunk($chunkX, $chunkZ, $chunk);
     }
     
