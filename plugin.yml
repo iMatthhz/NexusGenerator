@@ -2,7 +2,7 @@
 name: NexusMap
 version: 0.0.1
 main: matheuss\NexusMap\Main
-api: 4.13.0
+api: 4.0.0
 src-namespace-prefix: matheuss\NexusMap
 
 commands:
